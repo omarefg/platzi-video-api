@@ -1,0 +1,19 @@
+{
+  "name": "platzi-video-server",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omarefg/platzi-video-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omarefg/platzi-video-server/issues"
+  },
+  "homepage": "https://github.com/omarefg/platzi-video-server#readme"
+}
