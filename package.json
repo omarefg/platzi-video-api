@@ -20,7 +20,8 @@
   "homepage": "https://github.com/omarefg/platzi-video-server#readme",
   "dependencies": {
     "dotenv": "^8.1.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.3.2"
   },
   "devDependencies": {
     "eslint": "^6.4.0",
