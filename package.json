@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/omarefg/platzi-video-server#readme",
   "dependencies": {
+    "@hapi/boom": "^7.4.3",
+    "@hapi/joi": "^16.1.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "mongodb": "^3.3.2"
