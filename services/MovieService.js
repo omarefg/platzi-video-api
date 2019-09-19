@@ -1,4 +1,4 @@
-const { MongoLib } = require('../lib')
+const MongoLib = require('../lib/MongoLib')
 
 class MovieService {
 

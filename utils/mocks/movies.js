@@ -1,4 +1,4 @@
-[{"id":"02d47666-de8b-4736-95bb-afc44c79c0ad","title":"8 Women","year":2011,"cover":"http://dummyimage.com/162x129.png/cc0000/ffffff","description":"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.","duration":2005,"contentRating":"PG","source":"https://wikimedia.org/vitae.jsp","tag":["Action|Adventure|Drama"]},
+const moviesMock = [{"id":"02d47666-de8b-4736-95bb-afc44c79c0ad","title":"8 Women","year":2011,"cover":"http://dummyimage.com/162x129.png/cc0000/ffffff","description":"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.","duration":2005,"contentRating":"PG","source":"https://wikimedia.org/vitae.jsp","tag":["Action|Adventure|Drama"]},
 {"id":"3b8faf59-9d0e-46ed-a32d-946fab91eeab","title":"The Nutcracker in 3D","year":2001,"cover":"http://dummyimage.com/193x230.jpg/cc0000/ffffff","description":"Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.","duration":1967,"contentRating":"PG+13","source":"https://ebay.com/ante/ipsum/primis/in.jpg","tag":["Adventure|Sci-Fi","Adventure"]},
 {"id":"1a74f388-2ad9-4f7d-a92e-6b1fc42db728","title":"Chorus, The (Hamsarayan)","year":1994,"cover":"http://dummyimage.com/167x132.jpg/cc0000/ffffff","description":"In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.","duration":1959,"contentRating":"R","source":"https://ask.com/gravida/sem/praesent/id/massa/id/nisl.jsp","tag":["Children|Drama","Action|Thriller","Adventure|Crime","Action|Adventure|Crime|Thriller"]},
 {"id":"274e8105-301f-47f2-ba70-9f41c47875f2","title":"Keith Lemon: The Film","year":1999,"cover":"http://dummyimage.com/156x166.png/dddddd/000000","description":"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.","duration":1943,"contentRating":"PG","source":"https://biglobe.ne.jp/consequat/in/consequat/ut/nulla/sed/accumsan.xml","tag":["Comedy|Drama","Drama","Adventure|Comedy|Crime|Romance","Crime|Horror|Mystery|Thriller"]},
@@ -8,3 +8,24 @@
 {"id":"1af8ef2c-32e1-48e5-a354-7932ffd43fbb","title":"Project A 2 ('A' gai wak juk jap)","year":1997,"cover":"http://dummyimage.com/154x106.png/ff4444/ffffff","description":"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.","duration":2018,"contentRating":"R","source":"http://issuu.com/libero/convallis/eget/eleifend/luctus.xml","tag":["Drama|War","Drama","Action|Adventure|Animation","Drama"]},
 {"id":"0e7bd2cc-7c9e-4d2d-a8e6-b1f4ff46c308","title":"The great match","year":1999,"cover":"http://dummyimage.com/226x140.jpg/5fa2dd/ffffff","description":"Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.\n\nIn hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.","duration":2026,"contentRating":"G","source":"http://nsw.gov.au/fusce/posuere/felis/sed/lacus/morbi/sem.jsp","tag":["Documentary"]},
 {"id":"06d9216d-bea1-40e6-93bc-7c168a692d9a","title":"Indie Game: The Movie","year":1984,"cover":"http://dummyimage.com/250x182.jpg/dddddd/000000","description":"Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.\n\nPellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.","duration":2062,"contentRating":"R","source":"https://istockphoto.com/proin/eu/mi/nulla.html","tag":["Horror|Mystery"]}]
+
+function filterMoviesMock (tag) {
+    return moviesMock.filter(movie => movie.tag.includes(tag))
+}
+
+class MoviesServiceMock {
+    async getMovies () {
+        return Promise.resolve(moviesMock)
+    }
+
+    async createMovie () {
+        return Promise.resolve(moviesMock[0]) 
+    }
+}
+
+
+module.exports = {
+    moviesMock,
+    filterMoviesMock,
+    MoviesServiceMock
+}

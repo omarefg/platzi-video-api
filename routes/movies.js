@@ -1,6 +1,6 @@
 const express = require('express')
 const joi = require('@hapi/joi')
-const { MovieService } = require('../services')
+const MovieService = require('../services/MovieService')
 const {
     movieIdSchema,
     createMovieSchema,
@@ -8,6 +8,11 @@ const {
 } = require('../utils/schemas/movies')
 
 const validationHandler = require('../utils/middlewares/validation-handler')
+const cacheResponse = require('../utils/cache-response')
+const {
+    FIVE_MINUTES_IN_SECONDS,
+    SIXTY_MINUTES_IN_SECONDS
+} = require('../utils/time')
 
 function moviesApi(app) {
     const router = express.Router()
@@ -17,6 +22,7 @@ function moviesApi(app) {
 
     router.get('/', async function(req, res, next) {
         const { tags } = req.query
+        cacheResponse(res, FIVE_MINUTES_IN_SECONDS)
         try {
             const movies = await movieService.getMovies({ tags })
             res.status(200).json({
@@ -33,6 +39,7 @@ function moviesApi(app) {
         validationHandler(joi.object({ movieId: movieIdSchema }), 'params'),
         async function(req, res, next) {
             const { movieId } = req.params
+            cacheResponse(res, SIXTY_MINUTES_IN_SECONDS)
             try {
                 const movie = await movieService.getMovie({ movieId })
                 res.status(200).json({

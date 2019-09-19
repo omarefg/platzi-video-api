@@ -1,4 +1,6 @@
 const express = require('express')
+const debug = require('debug')('app:server');
+
 const app = express()
 const { config } = require('./config')
 const moviesApi = require('./routes/movies')
@@ -20,5 +22,5 @@ app.use(wrapError)
 app.use(errorHandler)
 
 app.listen(config.port, function () {
-    console.log(`Listening http://localhost:${config.port}`)
+    debug(`Listening http://localhost:${config.port}`)
 })

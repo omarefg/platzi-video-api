@@ -1,5 +1,6 @@
 'use strict'
 const boom = require('@hapi/boom')
+const debug = require('debug')('app:error')
 
 const { config } = require('../../config')
 
@@ -11,7 +12,7 @@ function withErrorStack (err, stack) {
 }
 
 function logErrors (err, req, res, next) {
-    console.log(err)
+    debug(err)
     next(err)
 }
 

@@ -1,5 +1,11 @@
-const moviesMock = require('./movies.json')
+const { moviesMock, filterMoviesMock, MoviesServiceMock } = require('./movies')
+const { getAllStub, createStub, MongoLibMock } = require('./mongo-lib')
 
 module.exports = {
-    moviesMock
+    moviesMock,
+    filterMoviesMock,
+    MoviesServiceMock,
+    getAllStub,
+    createStub,
+    MongoLibMock
 }
