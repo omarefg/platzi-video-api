@@ -1,17 +1,24 @@
 const express = require('express')
-const debug = require('debug')('app:server');
+const debug = require('debug')('app:server')
 
 const app = express()
 const { config } = require('./config')
-const moviesApi = require('./routes/movies')
+const { moviesApi, userMoviesApi, authApi } = require('./routes')
 
-const { logErrors, errorHandler, wrapError, notFoundHandler } = require('./utils/middlewares/error-handlers') 
+const {
+    logErrors,
+    errorHandler,
+    wrapError,
+    notFoundHandler
+} = require('./utils/middlewares/error-handlers')
 
 // Body Parser
 app.use(express.json())
 
 // Routes
 moviesApi(app)
+userMoviesApi(app)
+authApi(app)
 
 // Catch 404
 app.use(notFoundHandler)
@@ -21,6 +28,6 @@ app.use(logErrors)
 app.use(wrapError)
 app.use(errorHandler)
 
-app.listen(config.port, function () {
+app.listen(config.port, function() {
     debug(`Listening http://localhost:${config.port}`)
 })
