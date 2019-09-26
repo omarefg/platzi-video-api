@@ -4,6 +4,12 @@ const boom = require('@hapi/boom')
 const jwt = require('jsonwebtoken')
 const ApiKeyService = require('../services/ApiKeyService')
 const { config } = require('../config')
+const UserService = require('../services/UserService')
+const validationHandler = require('../utils/middlewares/validation-handler')
+const { createUserSchema } = require('../utils/schemas/')
+
+// const THIRTY_DAYS_IN_SEC = 2592000;
+// const TWO_HOURS_IN_SEC = 7200;
 
 // Basic Strategy
 require('../utils/auth/strategies/basic')
@@ -13,6 +19,7 @@ function authApi(app) {
     app.use('/api/auth', router)
 
     const apiKeyService = new ApiKeyService()
+    const userService = new UserService()
 
     router.post('/sign-in', async (req, res, next) => {
         const { apiKeyToken } = req.body
@@ -22,8 +29,6 @@ function authApi(app) {
 
         passport.authenticate('basic', (error, user) => {
             try {
-                console.log('epaaa hay un error que es', error)
-                console.log('epaaa usuario es', user)
                 if (error || !user) {
                     next(boom.unauthorized())
                 }
@@ -32,10 +37,11 @@ function authApi(app) {
                     if (error) {
                         next(error)
                     }
+                    const apiKey = await apiKeyService.getApiKey({ token: apiKeyToken })
 
-                    const apiKey = apiKeyService.getApiKey({ apiKeyToken })
+                    // console.log(apiKey)
 
-                    if (apiKey) {
+                    if (!apiKey) {
                         next(boom.unauthorized())
                     }
 
@@ -62,6 +68,23 @@ function authApi(app) {
             }
         })(req, res, next)
     })
+
+    router.post(
+        '/sign-up',
+        validationHandler(createUserSchema),
+        async (req, res, next) => {
+            const { body: user } = req
+            try {
+                const createdUserId = await userService.createUser({ user })
+                res.status(201).json({
+                    data: createdUserId,
+                    message: 'user created'
+                })
+            } catch (error) {
+                next(error)
+            }
+        }
+    )
 }
 
 module.exports = authApi

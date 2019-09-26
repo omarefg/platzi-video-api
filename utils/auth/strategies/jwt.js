@@ -1,5 +1,5 @@
 const passport = require('passport')
-const { Strategy, ExtractJwt } = require('passport-http')
+const { Strategy, ExtractJwt } = require('passport-jwt')
 const boom = require('@hapi/boom')
 
 const UserService = require('../../../services/UserService')

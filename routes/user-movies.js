@@ -1,5 +1,6 @@
 const express = require('express')
 const joi = require('@hapi/joi')
+const passport = require('passport')
 
 const UserMovieService = require('../services/UserMovieService')
 const validationHandler = require('../utils/middlewares/validation-handler')
@@ -10,6 +11,9 @@ const {
     createUserMovieSchema
 } = require('../utils/schemas')
 
+// JWT Strategy
+require('../utils/auth/strategies/jwt')
+
 function userMoviesApi(app) {
     const router = express.Router()
     app.use('/api/user-movies', router)
@@ -18,6 +22,7 @@ function userMoviesApi(app) {
 
     router.get(
         '/',
+        passport.authenticate('jwt', { session: false }),
         validationHandler(joi.object({ userId: userIdSchema }), 'query'),
         async (req, res, next) => {
             const { userId } = req
@@ -35,6 +40,7 @@ function userMoviesApi(app) {
 
     router.post(
         '/',
+        passport.authenticate('jwt', { session: false }),
         validationHandler(createUserMovieSchema),
         async (req, res, next) => {
             const { body: userMovie } = req
@@ -54,6 +60,7 @@ function userMoviesApi(app) {
 
     router.delete(
         '/:userMovieId',
+        passport.authenticate('jwt', { session: false }),
         validationHandler(joi.object({ userMovieId: movieIdSchema }, 'params')),
         async (req, res, next) => {
             const userMovieId = req.params
@@ -71,6 +78,5 @@ function userMoviesApi(app) {
         }
     )
 }
-
 
 module.exports = userMoviesApi
