@@ -9,7 +9,10 @@ const {
 } = require('../utils/schemas/movies')
 
 const validationHandler = require('../utils/middlewares/validation-handler')
+const scopeValidationHandler = require('../utils/middlewares/scope-validation-handler')
+
 const cacheResponse = require('../utils/cache-response')
+
 const {
     FIVE_MINUTES_IN_SECONDS,
     SIXTY_MINUTES_IN_SECONDS
@@ -27,6 +30,7 @@ function moviesApi(app) {
     router.get(
         '/',
         passport.authenticate('jwt', { session: false }),
+        scopeValidationHandler(['read:movies']),
         async function(req, res, next) {
             const { tags } = req.query
             cacheResponse(res, FIVE_MINUTES_IN_SECONDS)
@@ -45,6 +49,7 @@ function moviesApi(app) {
     router.get(
         '/:movieId',
         passport.authenticate('jwt', { session: false }),
+        scopeValidationHandler(['read:movies']),
         validationHandler(joi.object({ movieId: movieIdSchema }), 'params'),
         async function(req, res, next) {
             const { movieId } = req.params
@@ -64,6 +69,7 @@ function moviesApi(app) {
     router.post(
         '/',
         passport.authenticate('jwt', { session: false }),
+        scopeValidationHandler(['create:movies']),
         validationHandler(createMovieSchema),
         async function(req, res, next) {
             const { body: movie } = req
@@ -81,6 +87,7 @@ function moviesApi(app) {
 
     router.put(
         '/:movieId',
+        scopeValidationHandler(['update:movies']),
         passport.authenticate('jwt', { session: false }),
         validationHandler({ movieId: movieIdSchema }, 'params'),
         validationHandler(updateMovieSchema),
@@ -105,6 +112,7 @@ function moviesApi(app) {
     router.patch(
         '/:movieId',
         passport.authenticate('jwt', { session: false }),
+        scopeValidationHandler(['update:movies']),
         async function(req, res, next) {
             const { body: movie } = req
             const { movieId } = req.params
@@ -127,6 +135,7 @@ function moviesApi(app) {
     router.delete(
         '/:movieId',
         passport.authenticate('jwt', { session: false }),
+        scopeValidationHandler(['delete:movies']),
         validationHandler({ movieId: movieIdSchema }, 'params'),
         async function(req, res, next) {
             const { movieId } = req.params
