@@ -7,7 +7,7 @@ const validationHandler = require('../utils/middlewares/validation-handler')
 const scopeValidationHandler = require('../utils/middlewares/scope-validation-handler')
 
 const {
-    movieIdSchema,
+    userMovieIdSchema,
     userIdSchema,
     createUserMovieSchema
 } = require('../utils/schemas')
@@ -48,9 +48,7 @@ function userMoviesApi(app) {
         async (req, res, next) => {
             const { body: userMovie } = req
             try {
-                const createdUserMovieId = userMovieService.createUserMovie(
-                    userMovie
-                )
+                const createdUserMovieId = await userMovieService.createUserMovie({userMovie})
                 res.status(201).json({
                     data: createdUserMovieId,
                     message: 'user movie created'
@@ -65,13 +63,11 @@ function userMoviesApi(app) {
         '/:userMovieId',
         passport.authenticate('jwt', { session: false }),
         scopeValidationHandler(['delete:user-movies']),
-        validationHandler(joi.object({ userMovieId: movieIdSchema }, 'params')),
+        validationHandler(joi.object({ userMovieId: userMovieIdSchema }), 'params'),
         async (req, res, next) => {
-            const userMovieId = req.params
+            const { userMovieId } = req.params
             try {
-                const deletedUserMovieId = userMovieService.deleteUserMovie({
-                    userMovieId
-                })
+                const deletedUserMovieId = await userMovieService.deleteUserMovie({ userMovieId })
                 res.status(200).json({
                     data: deletedUserMovieId,
                     message: 'user movie deleted'
