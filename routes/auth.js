@@ -6,10 +6,7 @@ const ApiKeyService = require('../services/ApiKeyService')
 const { config } = require('../config')
 const UserService = require('../services/UserService')
 const validationHandler = require('../utils/middlewares/validation-handler')
-const { createUserSchema } = require('../utils/schemas/')
-
-// const THIRTY_DAYS_IN_SEC = 2592000;
-// const TWO_HOURS_IN_SEC = 7200;
+const { createUserSchema, createProviderUserSchema } = require('../utils/schemas/')
 
 // Basic Strategy
 require('../utils/auth/strategies/basic')
@@ -38,8 +35,6 @@ function authApi(app) {
                         next(error)
                     }
                     const apiKey = await apiKeyService.getApiKey({ token: apiKeyToken })
-
-                    // console.log(apiKey)
 
                     if (!apiKey) {
                         next(boom.unauthorized())
@@ -79,6 +74,49 @@ function authApi(app) {
                 res.status(201).json({
                     data: createdUserId,
                     message: 'user created'
+                })
+            } catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    router.post(
+        '/sign-provider',
+        validationHandler(createProviderUserSchema),
+        async (req, res, next) => {
+            const { body } = req
+
+            const { apiKeyToken, ...user } = body
+
+            if (!apiKeyToken) {
+                return next(boom.unauthorized('API Key Token is required'))
+            }
+
+            try {
+                const queriedUser = await userService.getOrCreateUser({ user })
+                const apiKey = await apiKeyService.getApiKey({ token: apiKeyToken })
+
+                if (!apiKey) {
+                    return next(boom.unauthorized())
+                }
+
+                const { _id: id, name, email } = queriedUser
+
+                const payload = {
+                    sub: id,
+                    name,
+                    email,
+                    scopes: apiKey.scopes
+                }
+
+                const token = jwt.sign(payload, config.authJwtSecret, {
+                    expiresIn: '15m'
+                })
+
+                return res.status(200).json({
+                    token,
+                    user: { id, name, email }
                 })
             } catch (error) {
                 next(error)
