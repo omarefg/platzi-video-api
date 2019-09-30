@@ -27,9 +27,9 @@ function userMoviesApi(app) {
         scopeValidationHandler(['read:user-movies']),
         validationHandler(joi.object({ userId: userIdSchema }), 'query'),
         async (req, res, next) => {
-            const { userId } = req
+            const { userId } = req.query
             try {
-                const userMovies = userMovieService.getUserMovies({ userId })
+                const userMovies = await userMovieService.getUserMovies({ userId })
                 res.status(200).json({
                     data: userMovies,
                     message: 'user movies listed'

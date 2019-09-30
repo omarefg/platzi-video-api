@@ -8,7 +8,7 @@ class UserMovieService {
 
     async getUserMovies ({ userId }) {
         const query = userId && { userId }
-        const userMovies = this.mongoDB.getAll(this.collection, query)
+        const userMovies = await this.mongoDB.getAll(this.collection, query)
         return userMovies || []
     }
 
